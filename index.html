@@ -17,42 +17,36 @@ box-sizing:border-box;
 }
 
 body{
+
 font-family:'Poppins',sans-serif;
-background:#080014;
-color:white;
-overflow-x:hidden;
-}
-
-/* HERO SECTION */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-position:relative;
 
 background:
 linear-gradient(
-rgba(0,0,0,.25),
-rgba(0,0,0,.65)
+rgba(0,0,0,.45),
+rgba(0,0,0,.75)
 ),
 url("anime-bg.png");
 
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
+background-attachment:fixed;
+
+color:white;
+overflow-x:hidden;
+
 }
 
 /* STARS */
 
 .stars{
-position:absolute;
+position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-overflow:hidden;
+pointer-events:none;
+z-index:0;
 }
 
 .star{
@@ -70,58 +64,71 @@ animation:twinkle 4s infinite;
 100%{opacity:0;}
 }
 
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+position:relative;
+z-index:2;
+}
+
 /* GLASS CARD */
 
 .card{
 
-position:relative;
-z-index:2;
+background:rgba(15,10,35,.35);
 
-width:90%;
-max-width:700px;
-
-padding:50px;
-
-text-align:center;
-
-border-radius:35px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
+backdrop-filter:blur(15px);
 
 border:1px solid rgba(255,255,255,.15);
 
+padding:60px;
+
+border-radius:35px;
+
+text-align:center;
+
+width:90%;
+max-width:750px;
+
 box-shadow:
-0 0 50px rgba(255,255,255,.08),
-0 0 120px rgba(138,43,226,.15);
+0 0 40px rgba(255,255,255,.08),
+0 0 100px rgba(138,43,226,.15);
 
 }
 
 .title{
 font-family:'Cinzel',serif;
 font-size:4rem;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .name{
 font-size:2rem;
 color:#ffd6ff;
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
 .subtitle{
-margin-bottom:30px;
 font-size:1.1rem;
+margin-bottom:35px;
 }
 
 .btn{
+
 padding:18px 40px;
+
 border:none;
+
 border-radius:50px;
+
 cursor:pointer;
+
 font-size:18px;
-color:white;
 
 background:
 linear-gradient(
@@ -130,7 +137,10 @@ linear-gradient(
 #8b5cf6
 );
 
+color:white;
+
 transition:.3s;
+
 }
 
 .btn:hover{
@@ -145,30 +155,52 @@ display:none;
 
 padding:80px 20px;
 
-max-width:1000px;
+max-width:1100px;
 
 margin:auto;
+
+position:relative;
+z-index:2;
 
 }
 
 .letter-box{
 
-background:rgba(255,255,255,.08);
+background:rgba(15,10,35,.45);
 
-backdrop-filter:blur(20px);
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.15);
 
 padding:60px;
 
 border-radius:35px;
 
-line-height:2;
+line-height:2.2;
 
 font-size:20px;
 
-border:1px solid rgba(255,255,255,.12);
-
 box-shadow:
-0 0 50px rgba(255,255,255,.08);
+0 0 40px rgba(255,255,255,.1),
+0 0 100px rgba(138,43,226,.15);
+
+animation:floatCard 5s ease-in-out infinite;
+
+}
+
+@keyframes floatCard{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
 
 }
 
@@ -183,6 +215,7 @@ text-align:center;
 font-style:italic;
 color:#ffd6ff;
 margin-bottom:40px;
+font-size:24px;
 }
 
 .letter-box p{
@@ -191,31 +224,29 @@ margin-bottom:20px;
 
 .love{
 text-align:center;
-font-size:38px;
-margin-top:50px;
+font-size:40px;
+margin-top:60px;
 color:#ff9df7;
 }
 
 .signature{
 text-align:center;
 margin-top:20px;
-font-size:28px;
+font-size:30px;
 color:#ffd6ff;
 }
 
 .footer{
 text-align:center;
-margin-top:30px;
+margin-top:40px;
 font-size:24px;
 color:#ffd6ff;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
 
 .title{
-font-size:2.5rem;
+font-size:2.6rem;
 }
 
 .name{
@@ -234,9 +265,9 @@ font-size:18px;
 
 <body>
 
-<div class="hero">
-
 <div class="stars" id="stars"></div>
+
+<section class="hero">
 
 <div class="card">
 
@@ -258,7 +289,7 @@ Aprilia Zatalini
 
 </div>
 
-</div>
+</section>
 
 <section id="letter">
 
@@ -277,8 +308,7 @@ Selamat ulang tahun yang ke-30, Sayang.
 
 <p>
 Hari ini dunia merayakan hari lahirmu, tetapi bagiku,
-hari ini adalah perayaan atas hadirnya seseorang
-yang membuat hidupku jauh lebih indah.
+hari ini adalah perayaan atas hadirnya seseorang yang membuat hidupku jauh lebih indah.
 </p>
 
 <p>
@@ -307,11 +337,8 @@ dan setiap langkahmu dipenuhi kebahagiaan.
 
 <p>
 Jika suatu hari dunia terasa berat,
-ingatlah bahwa akan selalu ada seseorang
-yang memilihmu,
-hari ini,
-besok,
-dan seterusnya.
+ingatlah bahwa akan selalu ada seseorang yang memilihmu,
+hari ini, besok, dan seterusnya.
 </p>
 
 <p>
@@ -349,13 +376,13 @@ document.querySelector('.hero').style.display='none';
 
 document.getElementById('letter').style.display='block';
 
-document.getElementById('music').play();
+document.getElementById('music').play().catch(()=>{});
 
 window.scrollTo(0,0);
 
 }
 
-for(let i=0;i<250;i++){
+for(let i=0;i<300;i++){
 
 let star=document.createElement('div');
 
